@@ -39,7 +39,7 @@ let lastAction: THREE.AnimationAction
 const gltfLoader = new GLTFLoader()
 
 gltfLoader.load(
-    'models/vanguard.glb',
+    'models/anima-bona-001.glb',
     (gltf) => {
         // gltf.scene.scale.set(.01, .01, .01)
 
@@ -55,7 +55,7 @@ gltfLoader.load(
 
         //add an animation from another file
         gltfLoader.load(
-            'models/vanguard@samba.glb',
+            'models/anima-bona-001@samba.glb',
             (gltf) => {
                 console.log('loaded samba')
                 const animationAction = mixer.clipAction(
@@ -66,7 +66,7 @@ gltfLoader.load(
 
                 //add an animation from another file
                 gltfLoader.load(
-                    'models/vanguard@bellydance.glb',
+                    'models/anima-bona-001@bellydance.glb',
                     (gltf) => {
                         console.log('loaded bellydance')
                         const animationAction = mixer.clipAction(
@@ -77,7 +77,7 @@ gltfLoader.load(
 
                         //add an animation from another file
                         gltfLoader.load(
-                            'models/vanguard@goofyrunning.glb',
+                            'models/anima-bona-001@goofyrunning.glb',
                             (gltf) => {
                                 console.log('loaded goofyrunning');
                                 (gltf as any).animations[0].tracks.shift() //delete the specific track that moves the object forward while running
