@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "importHelpers": true,
+        "forceConsistentCasingInFileNames": true,
         "target": "ES6",
         "moduleResolution": "node",
         "strict": true,
