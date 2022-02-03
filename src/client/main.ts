@@ -8,9 +8,6 @@ import {
   WebGLRenderer,
 } from 'three';
 
-// Get a reference to the container element that will hold our scene
-const container = document.querySelector('#scene-container');
-
 // create a Scene
 const scene = new Scene();
 
@@ -47,7 +44,7 @@ const renderer = new WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
-// next, set the renderer to the same size as our container element
+// next, set the renderer to the same size as our window element
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // finally, set the pixel ratio so that our scene will look good on HiDPI displays
