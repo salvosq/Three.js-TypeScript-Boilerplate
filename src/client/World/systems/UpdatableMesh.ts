@@ -1,5 +1,5 @@
 import { Mesh } from "three"
 
 export class UpdatableMesh extends Mesh {
-  tick(): void {}
+  tick(delta: number): void {}
 }

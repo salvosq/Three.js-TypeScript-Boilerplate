@@ -1,6 +1,8 @@
 import { Clock, PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import { UpdatableMesh } from './UpdatableMesh'
 
+const clock = new Clock()
+
 class Loop {
   camera: PerspectiveCamera
   scene: Scene
@@ -29,8 +31,10 @@ class Loop {
   }
 
   tick() {
-    for (const object of this.updatables) {
-      object.tick()
+    const delta = clock.getDelta()
+
+    for (const uMesh of this.updatables) {
+      uMesh.tick(delta)
     }
   }
 }
