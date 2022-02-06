@@ -3,6 +3,7 @@ import { createCamera } from './components/camera'
 import { createCube } from './components/cube'
 import { createLights } from './components/lights'
 import { createScene } from './components/scene'
+import { Loop } from './systems/Loop'
 
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/Resizer'
@@ -12,12 +13,14 @@ import { Resizer } from './systems/Resizer'
 let camera:PerspectiveCamera
 let scene:Scene
 let renderer:WebGLRenderer
+let loop:Loop
 
 class World {
   constructor(container:HTMLDivElement) {
     camera = createCamera()
     scene = createScene()
     renderer = createRenderer()
+    loop = new Loop(camera, scene, renderer)
     container.append(renderer.domElement)
 
     const cube = createCube()
@@ -26,14 +29,14 @@ class World {
     scene.add(cube, light)
 
     const resizer = new Resizer(container, camera, renderer)
-    resizer.onResize = () => {
-      this.render()
-    }
   }
 
-  render() {
-    // draw a single frame
-    renderer.render(scene, camera)
+  start() {
+    loop.start()
+  }
+
+  stop() {
+    loop.stop()
   }
 }
 
