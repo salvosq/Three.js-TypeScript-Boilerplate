@@ -3,6 +3,7 @@ import { createCamera } from './components/camera'
 import { createCube } from './components/cube'
 import { createLights } from './components/lights'
 import { createScene } from './components/scene'
+import { createControls } from './systems/controls'
 import { Loop } from './systems/Loop'
 
 import { createRenderer } from './systems/renderer'
@@ -23,10 +24,13 @@ class World {
     loop = new Loop(camera, scene, renderer)
     container.append(renderer.domElement)
 
+    const controls = createControls(camera, renderer.domElement)
+
     const cube = createCube()
     const light = createLights()
 
-    loop.updatables.push(cube)
+    loop.updatables.push(controls)
+    //loop.updatables.push(cube)
 
     scene.add(cube, light)
 
