@@ -1,4 +1,4 @@
-import { Updatable } from "./Updatable";
+import { Updatable } from "./Updatable"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 export class UpdatableOrbitControls extends OrbitControls implements Updatable {
