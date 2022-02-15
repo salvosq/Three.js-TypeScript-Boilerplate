@@ -2,7 +2,7 @@ import {
   AmbientLight,
   DirectionalLight,
   HemisphereLight,
-} from 'three';
+} from 'three'
 
 function createLights() {
   const ambientLight = new HemisphereLight(
