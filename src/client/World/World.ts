@@ -8,6 +8,7 @@ import { Loop } from './systems/Loop'
 
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/Resizer'
+import { Train } from './components/Train/Train'
 
 // These variables are module-scoped: we cannot access them
 // from outside the module
@@ -27,10 +28,11 @@ class World {
     const controls = createControls(camera, renderer.domElement)
 
     const { ambientLight, mainLight } = createLights()
-    const meshGroup = createMeshGroup()
+    const train = new Train()
 
-    loop.updatables.push(controls, meshGroup)
-    scene.add(ambientLight, mainLight, meshGroup)
+    loop.updatables.push(controls)
+
+    scene.add(ambientLight, mainLight, train)
 
     const resizer = new Resizer(container, camera, renderer)
   }
