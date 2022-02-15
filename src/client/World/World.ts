@@ -32,10 +32,6 @@ class World {
     loop.updatables.push(controls, meshGroup)
     scene.add(ambientLight, mainLight, meshGroup)
 
-    loop.updatables.push(controls, meshGroup)
-
-    scene.add(ambientLight, mainLight, meshGroup)
-
     const resizer = new Resizer(container, camera, renderer)
   }
 
