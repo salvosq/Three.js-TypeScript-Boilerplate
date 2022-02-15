@@ -1,7 +1,10 @@
-import { Group } from 'three'
+import { MathUtils } from 'three'
+import { UpdatableGroup } from '../../systems/UpdatableGroup'
 import { createMeshes } from './meshes'
 
-class Train extends Group {
+const wheelSpeed = MathUtils.degToRad(24)
+
+class Train extends UpdatableGroup {
   meshes: any
   constructor() {
     super()
@@ -17,6 +20,13 @@ class Train extends Group {
       this.meshes.smallWheelFront,
       this.meshes.bigWheel
     )
+  }
+
+  tick(delta: number): void {
+    this.meshes.bigWheel.rotation.y += wheelSpeed * delta
+    this.meshes.smallWheelRear.rotation.y += wheelSpeed * delta
+    this.meshes.smallWheelCenter.rotation.y += wheelSpeed * delta
+    this.meshes.smallWheelFront.rotation.y += wheelSpeed * delta
   }
 }
 

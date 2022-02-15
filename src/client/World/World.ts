@@ -30,7 +30,7 @@ class World {
     const { ambientLight, mainLight } = createLights()
     const train = new Train()
 
-    loop.updatables.push(controls)
+    loop.updatables.push(controls, train)
 
     scene.add(ambientLight, mainLight, train)
 
