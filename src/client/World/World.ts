@@ -1,6 +1,5 @@
 import { PerspectiveCamera, Scene, WebGLRenderer } from 'three'
 import { createCamera } from './components/camera'
-import { createMeshGroup } from './components/meshGroup'
 import { createLights } from './components/lights'
 import { createScene } from './components/scene'
 import { createControls } from './systems/controls'
@@ -8,7 +7,7 @@ import { Loop } from './systems/Loop'
 
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/Resizer'
-import { Train } from './components/Train/Train'
+import { loadBirds } from './components/birds/birds'
 
 // These variables are module-scoped: we cannot access them
 // from outside the module
@@ -28,13 +27,17 @@ class World {
     const controls = createControls(camera, renderer.domElement)
 
     const { ambientLight, mainLight } = createLights()
-    const train = new Train()
 
-    loop.updatables.push(controls, train)
+    loop.updatables.push(controls)
 
-    scene.add(ambientLight, mainLight, train)
+    scene.add(ambientLight, mainLight)
 
     const resizer = new Resizer(container, camera, renderer)
+  }
+
+  async init() {
+    const { parrot } = await loadBirds()
+    scene.add(parrot)
   }
 
   start() {
