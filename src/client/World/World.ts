@@ -8,10 +8,12 @@ import { Loop } from './systems/Loop'
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/Resizer'
 import { loadBirds } from './components/birds/birds'
+import { UpdatableOrbitControls } from './systems/UpdatableOrbitControls'
 
 // These variables are module-scoped: we cannot access them
 // from outside the module
 let camera:PerspectiveCamera
+let controls:UpdatableOrbitControls
 let scene:Scene
 let renderer:WebGLRenderer
 let loop:Loop
@@ -24,7 +26,7 @@ class World {
     loop = new Loop(camera, scene, renderer)
     container.append(renderer.domElement)
 
-    const controls = createControls(camera, renderer.domElement)
+    controls = createControls(camera, renderer.domElement)
 
     const { ambientLight, mainLight } = createLights()
 
@@ -36,8 +38,10 @@ class World {
   }
 
   async init() {
-    const { parrot } = await loadBirds()
-    scene.add(parrot)
+    const { parrot, flamingo, stork } = await loadBirds()
+    controls.target.copy(parrot.position)
+    loop.updatables.push(parrot, flamingo, stork)
+    scene.add(parrot, flamingo, stork)
   }
 
   start() {
